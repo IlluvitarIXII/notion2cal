@@ -2,8 +2,8 @@ name: Sync Notion to Calendar
 
 on:
   schedule:
-    # 每天 UTC 06:00 自动运行
-    - cron: "0 6 * * *"
+    # 每 15 分钟自动触发一次
+    - cron: "*/15 * * * *"
   workflow_dispatch:
 
 permissions:
