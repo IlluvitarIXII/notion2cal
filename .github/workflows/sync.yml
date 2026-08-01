@@ -2,9 +2,9 @@ name: Sync Notion to Calendar
 
 on:
   schedule:
-    # Runs weekly on Monday at 06:00 UTC
-    - cron: "0 6 * * 1"
-  workflow_dispatch: # Allow manual trigger
+    # 每天 UTC 06:00 自动运行
+    - cron: "0 6 * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -31,7 +31,7 @@ jobs:
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: python notion2cal.py
 
-     - name: Commit and push .ics file
+      - name: Commit and push .ics file
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
