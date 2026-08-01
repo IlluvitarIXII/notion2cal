@@ -31,11 +31,11 @@ jobs:
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: python notion2cal.py
 
-      - name: Commit and push .ics file
+     - name: Commit and push .ics file
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase origin main
           git add notion_calendar.ics
           git diff --cached --quiet || git commit -m "Update calendar $(date -u +%Y-%m-%d)"
+          git pull --rebase origin main || git rebase --skip
           git push origin main
